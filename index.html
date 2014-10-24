@@ -8,14 +8,16 @@
   </body>
 <script type="text/javascript">
 $(function() {
+	var templateData;
 
-  var template = twig({
-    data: 'The {{ baked_good }} is a lie.'
-  });
+	$.get('layouts/layout.html', function(html){
+	  var template = twig({ data: html });
 
-  $('body').html(
-    template.render({baked_good: 'cupcake'})
-  );
+	  $('body').html(
+	    template.render({baked_good: 'cupcake'})
+	  );
+	});
+
 
 })
 </script>

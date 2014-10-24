@@ -1,28 +1,8 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <script src="js/jquery.min.js"></script>
-    <script src="twig.js"></script>
-    <script src="esprima.js"></script>
-    <script src="js-yaml.min.js"></script>
+    <script data-main="http://schaman.github.io/icoach-templating/templating" src="http://schaman.github.io/icoach-templating/lib/require.js"></script>
   </head>
   <body>
   </body>
-<script type="text/javascript">
-$(function() {
-	function getRemote(remote_url) {
-		return $.ajax({
-			type: "GET",
-			url: remote_url,
-			async: false
-		}).responseText;
-	}
-
-	var doc = jsyaml.load(getRemote('data.yaml'));
-	var template = twig({ data: getRemote('layouts/layout.html') });
-	var html = template.render(doc);
-
-	$('body').html(html);
-})
-</script>
 </html>

@@ -3,22 +3,26 @@
   <head>
     <script src="js/jquery.min.js"></script>
     <script src="twig.js"></script>
+    <script src="esprima.js"></script>
+    <script src="js-yaml.min.js"></script>
   </head>
   <body>
   </body>
 <script type="text/javascript">
 $(function() {
-	var templateData;
+	function getRemote(remote_url) {
+		return $.ajax({
+			type: "GET",
+			url: remote_url,
+			async: false
+		}).responseText;
+	}
 
-	$.get('layouts/layout.html', function(html){
-	  var template = twig({ data: html });
+	var doc = jsyaml.load(getRemote('data.yaml'));
+	var template = twig({ data: getRemote('layouts/layout.html') });
+	var html = template.render(doc);
 
-	  $('body').html(
-	    template.render({title: 'Cupcake'})
-	  );
-	});
-
-
+	$('body').html(html);
 })
 </script>
 </html>
